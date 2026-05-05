@@ -33,6 +33,8 @@ Frontend (HTML) → API Gateway → Lambda → DynamoDB
 - API integration with frontend
 - Working with DynamoDB database
 - Building cloud-based web applications
+  <img width="1003" height="266" alt="image" src="https://github.com/user-attachments/assets/4367f18d-bc81-4a18-b4d9-8a8ca6bd877b" />
+
 
 
 ## 👩‍💻 Author
