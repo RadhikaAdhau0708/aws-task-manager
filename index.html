@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+</head>
+<body>
+
+<h2>Task Manager</h2>
+
+<input type="text" id="taskInput" placeholder="Enter task">
+<button onclick="createTask()">Add Task</button>
+
+<p id="result">Waiting for input...</p>
+
+<script>
+function createTask() {
+    const task = document.getElementById("taskInput").value;
+
+    // 🔴 STEP 1: confirm button works
+    document.getElementById("result").innerText = "Button clicked...";
+
+    // 🔴 STEP 2: check input
+    if (!task) {
+        document.getElementById("result").innerText = "Please enter a task";
+        return;
+    }
+
+    // 🔴 STEP 3: show request started
+    document.getElementById("result").innerText = "Sending request...";
+
+    fetch("https://k8us7imxe6.execute-api.ap-south-1.amazonaws.com/dev/create", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ title: task })
+    })
+    .then(async (res) => {
+        // Try reading raw response first (VERY IMPORTANT for AWS APIs)
+        const text = await res.text();
+        console.log("RAW RESPONSE:", text);
+
+        try {
+            return JSON.parse(text);
+        } catch (e) {
+            return text;
+        }
+    })
+    .then(data => {
+        console.log("FINAL DATA:", data);
+
+        document.getElementById("result").innerText =
+            "Response received: " + JSON.stringify(data);
+    })
+    .catch(err => {
+        console.log("ERROR:", err);
+
+        document.getElementById("result").innerText =
+            "Request failed (check console)";
+    });
+}
+</script>
+
+</body>
+</html>
