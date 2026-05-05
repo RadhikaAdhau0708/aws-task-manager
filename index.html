@@ -16,16 +16,16 @@
 function createTask() {
     const task = document.getElementById("taskInput").value;
 
-    // 🔴 STEP 1: confirm button works
+    // STEP 1: confirm button works
     document.getElementById("result").innerText = "Button clicked...";
 
-    // 🔴 STEP 2: check input
+    // STEP 2: check input
     if (!task) {
         document.getElementById("result").innerText = "Please enter a task";
         return;
     }
 
-    // 🔴 STEP 3: show request started
+    // STEP 3: show request started
     document.getElementById("result").innerText = "Sending request...";
 
     fetch("https://k8us7imxe6.execute-api.ap-south-1.amazonaws.com/dev/create", {
